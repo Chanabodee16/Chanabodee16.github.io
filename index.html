@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>สุขสันต์วันครบรอบนะอ้วน 💖</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Tahoma', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1740&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 200, 220, 0.6);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding-top: 10vh;
+      padding-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #fff0f5;
+      text-shadow: 2px 2px #c94f7c;
+    }
+
+    .typing {
+      font-size: 1.4em;
+      margin: 20px auto;
+      white-space: pre-wrap;
+      max-width: 700px;
+      min-height: 120px;
+      text-shadow: 1px 1px #c94f7c;
+    }
+
+    .counter {
+      font-size: 2em;
+      margin-top: 20px;
+      text-shadow: 1px 1px #d94d82;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: white;
+      background-color: #ff6699;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .button:hover {
+      background-color: #ff3366;
+      transform: scale(1.05);
+    }
+
+    .heart {
+      position: fixed;
+      top: -50px;
+      color: red;
+      font-size: 24px;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- เสียง -->
+  <audio id="bgMusic" src="love.mp3" autoplay loop></audio>
+  <audio id="clickSound" src="click.mp3"></audio>
+
+  <div class="overlay"></div>
+
+  <div class="container">
+    <h1>สุขสันต์วันครบรอบ 1 ปีแล้วอ้วน 💕</h1>
+    <div class="typing" id="typing"></div>
+    <div class="counter" id="daysCount"></div>
+
+    <div class="buttons">
+      <a href="photo.html" class="button" onclick="playClick()">ดูรูปคู่ 📷</a>
+      <a href="video.html" class="button" onclick="playClick()">ดูวิดีโอ 🎥</a>
+    </div>
+  </div>
+
+  <!-- หัวใจร่วง -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 2 + Math.random() * 3 + "s";
+      heart.innerText = "💖";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+  <!-- พิมพ์ข้อความ + วันครบรอบ -->
+  <script>
+    const text = "อยู่ด้วยกันมา 1 ปีแล้วนะอ้วน แต่ก็ยังรู้สึกเหมือนวันแรกที่เราเจอกันเลย\nขอบคุณที่อ้วนเข้ามาอยู่ในชีวิตเค้านะ ✨\nรักอ้วนมากๆเลยนะ 💘";
+    let index = 0;
+
+    function typeWriter() {
+      if (index < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 80);
+      }
+    }
+
+    window.onload = function () {
+      typeWriter();
+
+      const startDate = new Date("2024-06-21");
+      const today = new Date();
+      const days = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+      document.getElementById("daysCount").innerText = `เราอยู่ด้วยกันมาแล้ว ${days} วัน 💞`;
+    };
+
+    function playClick() {
+      document.getElementById("clickSound").play();
+    }
+  </script>
+
+</body>
+</html>
